@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>title</title>
+    <style>
+      input{
+      width: 100px;
+      height: 80ppx;
+      }
+    </style>
+    <script>
+      function openled(){
+      document.getElementById('myframe').src="/led/open";
+      }
+      function closeled(){
+      document.getElementById('myframe').src="/led/close";
+      }
+    </script>
+  </head>
+  <body>
+      <br/>
+      <input type="button" onclick="openled()" value="On"/>
+      <span style="margin:5px;"></span>
+      <br/>
+      <br/>
+      <input type="button" onclick="closeled()" value="Off"/>
+      <br/>
+      <iframe src="" id="myframe" width="1" height="1"></iframe>
+  </body>
+</html>

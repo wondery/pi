@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>title</title>
+  </head>
+  <body>
+    <a href="/led/start" target="myframe">start</a>
+    <br/>
+    <a href="/led/open" target="myframe">open</a>
+    <br/>
+    <a href="/led/close" target="myframe">close</a>
+    <br/>
+    <a href="/led/end" target="myframe">end</a>
+    <br/>
+    <iframe name="myframe" width="200" height="200"></iframe>
+  </body>
+</html>

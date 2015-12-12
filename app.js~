@@ -1,0 +1,50 @@
+var http = require('http');
+var gpio = require('pi-gpio');
+var fs = require('fs');
+
+var PIN = 8;
+
+var errHandler = function (err){
+    console.log('has error:');
+    console.log(err);
+};
+
+http.createServer(function (req, res){
+    if(req.url == '/led/open') {
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        gpio.write(PIN, 1, errHandler);
+        res.end('open')
+        return;
+    }
+
+    if(req.url == '/led/close'){
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        gpio.write(PIN, 0, errHandler);
+        res.end('close');
+        return;
+    }
+
+
+    if(req.url == '/led/start'){
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+	gpio.open(PIN, "output", function (err) {
+	    if(err){
+		console.log('已经打开');
+	    }
+	});
+        res.end('start');
+        return;
+    }
+
+    if(req.url == '/led/end'){
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+	gpio.close(PIN);
+        res.end('down');
+        return;
+    }
+
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end(fs.readFileSync('index.html'));
+}).listen(1984);
+
+console.log('server runn at 1984');
